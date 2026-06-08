@@ -1,0 +1,455 @@
+/* ============================================================
+   FootballNews.uz — Premium Custom Stylesheet
+   style.css
+   ============================================================ */
+
+/* ── Root Transitions for Dark Mode ───────────────────────── */
+:root {
+  --transition-theme: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                      color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                      border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                      box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after {
+  transition: var(--transition-theme);
+}
+
+/* Override transition for elements that need faster responses */
+button, a, svg, img {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.2s ease,
+              background-color 0.2s ease,
+              color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+/* ── @keyframes: fadeInUp ────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── @keyframes: heroReveal ─────────────────────────────── */
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── @keyframes: premiumGlow ────────────────────────────── */
+@keyframes premiumGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 6px 0px rgba(34, 197, 94, 0.6),
+      0 0 12px 2px rgba(34, 197, 94, 0.3),
+      0 0 20px 4px rgba(34, 197, 94, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 10px 2px rgba(34, 197, 94, 0.9),
+      0 0 24px 6px rgba(34, 197, 94, 0.5),
+      0 0 40px 10px rgba(34, 197, 94, 0.15);
+  }
+}
+
+/* ── @keyframes: liveBadgePulse (orange for hero) ───────── */
+@keyframes liveBadgePulse {
+  0%, 100% {
+    box-shadow:
+      0 0 6px 0px rgba(249, 115, 22, 0.7),
+      0 0 14px 3px rgba(249, 115, 22, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 0 12px 3px rgba(249, 115, 22, 1),
+      0 0 28px 8px rgba(249, 115, 22, 0.5);
+  }
+}
+
+/* ── @keyframes: logoPop ─────────────────────────────────── */
+@keyframes logoPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.12) rotate(-3deg); }
+  70%  { transform: scale(0.96) rotate(2deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* ── @keyframes: navbarSlideDown ────────────────────────── */
+@keyframes navbarSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── @keyframes: shimmer (skeleton loader) ──────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── @keyframes: liveScoreSlide ─────────────────────────── */
+@keyframes liveScoreSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── @keyframes: tableRowFade ───────────────────────────── */
+@keyframes tableRowFade {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── @keyframes: dotBounce (live indicator) ─────────────── */
+@keyframes dotBounce {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.5); opacity: 0.6; }
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+#navbar {
+  animation: navbarSlideDown 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.logo-icon {
+  animation: logoPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+}
+
+/* Nav Buttons */
+.nav-btn {
+  color: #6b7280; /* gray-500 */
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.nav-btn:hover {
+  color: #f97316; /* orange-500 */
+  background-color: rgba(249, 115, 22, 0.08);
+}
+
+.nav-btn-active {
+  color: #f97316 !important; /* orange-500 */
+  background-color: rgba(249, 115, 22, 0.1) !important;
+  font-weight: 700;
+}
+
+.dark .nav-btn {
+  color: #9ca3af; /* gray-400 */
+}
+
+.dark .nav-btn:hover {
+  color: #fb923c; /* orange-400 */
+  background-color: rgba(251, 146, 60, 0.1);
+}
+
+.dark .nav-btn-active {
+  color: #fb923c !important;
+  background-color: rgba(251, 146, 60, 0.12) !important;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero-card {
+  animation: heroReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hero-card:hover .hero-image {
+  transform: scale(1.04);
+}
+
+.hero-image {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-live-badge {
+  animation: liveBadgePulse 2s ease-in-out infinite;
+}
+
+/* ── Skeleton loader ────────────────────────────────────── */
+.hero-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(226, 232, 240, 0.4) 25%,
+    rgba(203, 213, 225, 0.8) 50%,
+    rgba(226, 232, 240, 0.4) 75%
+  );
+  background-size: 200% auto;
+  animation: shimmer 1.6s linear infinite;
+}
+
+.dark .hero-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 25%,
+    rgba(51, 65, 85, 0.9) 50%,
+    rgba(30, 41, 59, 0.6) 75%
+  );
+  background-size: 200% auto;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* ============================================================
+   NEWS CARDS
+   ============================================================ */
+.news-card {
+  position: relative;
+  background: white;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(229, 231, 235, 1);
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0; /* start hidden, JS adds .visible */
+  transform: translateY(28px);
+  will-change: transform, opacity;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.dark .news-card {
+  background: rgb(17 24 39); /* gray-900 */
+  border-color: rgba(31, 41, 55, 1); /* gray-800 */
+}
+
+/* Staggered animation for each card */
+.news-card.visible {
+  animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ── 3D Tilt / Lift hover effect ────────────────────────── */
+.news-card:hover {
+  transform: translateY(-6px) perspective(800px) rotateX(2deg);
+  box-shadow:
+    0 20px 40px -8px rgba(0, 0, 0, 0.15),
+    0 8px 16px -4px rgba(249, 115, 22, 0.08),
+    0 0 0 1px rgba(249, 115, 22, 0.12);
+  border-color: rgba(249, 115, 22, 0.2);
+}
+
+.dark .news-card:hover {
+  box-shadow:
+    0 20px 40px -8px rgba(0, 0, 0, 0.5),
+    0 8px 16px -4px rgba(249, 115, 22, 0.12),
+    0 0 0 1px rgba(249, 115, 22, 0.2);
+  border-color: rgba(249, 115, 22, 0.25);
+}
+
+/* Image zoom inside card on hover */
+.news-card:hover .card-image {
+  transform: scale(1.06);
+}
+
+.card-image {
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.news-card-img-wrap {
+  overflow: hidden;
+  height: 180px;
+  position: relative;
+}
+
+/* Orange accent line that slides in on hover */
+.news-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f97316, #fb923c);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+.news-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Category badges */
+.badge-league     { background: rgba(59, 130, 246, 0.1);  color: #3b82f6; }
+.badge-transfer   { background: rgba(168, 85, 247, 0.1);  color: #a855f7; }
+.badge-champions  { background: rgba(234, 179, 8, 0.1);   color: #ca8a04; }
+.badge-breaking   { background: rgba(239, 68, 68, 0.1);   color: #ef4444; }
+.badge-default    { background: rgba(249, 115, 22, 0.1);  color: #f97316; }
+
+.dark .badge-league     { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.dark .badge-transfer   { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+.dark .badge-champions  { background: rgba(234, 179, 8, 0.15);  color: #fbbf24; }
+.dark .badge-breaking   { background: rgba(239, 68, 68, 0.15);  color: #f87171; }
+.dark .badge-default    { background: rgba(249, 115, 22, 0.15); color: #fb923c; }
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+/* Sidebar widget entrance */
+.sidebar-widget {
+  animation: fadeInUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+}
+
+/* Live dot pulse */
+.live-pulse-dot {
+  animation: dotBounce 1.4s ease-in-out infinite;
+}
+
+/* Live match rows */
+.live-match-row {
+  animation: liveScoreSlide 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  padding: 0.875rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.live-match-row:hover {
+  background-color: rgba(249, 115, 22, 0.04);
+}
+
+.dark .live-match-row:hover {
+  background-color: rgba(249, 115, 22, 0.07);
+}
+
+/* LIVE badge with neon glow */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  padding: 2px 7px;
+  border-radius: 999px;
+  animation: premiumGlow 2.2s ease-in-out infinite;
+}
+
+.live-badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: dotBounce 1.2s ease-in-out infinite;
+}
+
+.finished-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  background: rgba(107, 114, 128, 0.08);
+  border: 1px solid rgba(107, 114, 128, 0.15);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+.dark .finished-badge {
+  color: #9ca3af;
+  background: rgba(107, 114, 128, 0.12);
+  border-color: rgba(107, 114, 128, 0.2);
+}
+
+/* League table rows */
+.table-row {
+  animation: tableRowFade 0.45s ease both;
+  padding: 0.6rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.25rem;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.table-row:hover {
+  background-color: rgba(249, 115, 22, 0.04);
+}
+
+.dark .table-row:hover {
+  background-color: rgba(249, 115, 22, 0.07);
+}
+
+/* Champions qualifier color */
+.row-champions {
+  background: linear-gradient(90deg, rgba(59,130,246,0.05) 0%, transparent 80%);
+  border-left: 2px solid #3b82f6;
+}
+
+.row-title {
+  background: linear-gradient(90deg, rgba(251, 191, 36, 0.08) 0%, transparent 80%);
+  border-left: 2px solid #f59e0b;
+}
+
+.row-uel {
+  background: linear-gradient(90deg, rgba(234, 179, 8, 0.05) 0%, transparent 80%);
+  border-left: 2px solid #eab308;
+}
+
+.row-relegation {
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.05) 0%, transparent 80%);
+  border-left: 2px solid #ef4444;
+}
+
+/* ============================================================
+   DARK MODE OVERRIDES
+   ============================================================ */
+.dark body {
+  color-scheme: dark;
+}
+
+/* ============================================================
+   SCROLLBAR — custom thin scroll
+   ============================================================ */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: rgba(249, 115, 22, 0.35); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(249, 115, 22, 0.6); }
+
+/* ============================================================
+   UTILITY OVERRIDES
+   ============================================================ */
+.font-900 { font-weight: 900; }
